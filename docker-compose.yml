@@ -1,0 +1,17 @@
+version: '2.1'
+services:
+  localstack:
+    image: localstack/localstack-full
+    container_name: localstack-sample
+    ports:
+      - "4566-4620:4566-4620"
+      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+    environment:
+      - SERVICES=lambda
+      - DEBUG=1
+      - DEFAULT_REGION=us-east-2
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
