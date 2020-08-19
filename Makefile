@@ -25,7 +25,7 @@ function.zip: main
 	zip function.zip main
 
 main:
-	go build main.go
+	go build -gcflags='all=-N -l' main.go
 
 clean:
 	rm -rf main function.zip
